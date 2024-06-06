@@ -1,0 +1,72 @@
+import 'Map_design.dart';
+import 'dart:io';
+import 'User_player.dart';
+
+void play() {
+  Player currentplayer = new Player();
+
+  print('=================================================================');
+  print('|                      What is your name?                       |');
+  String? playerName = stdin.readLineSync();
+  print('|                          Hello ${playerName ?? 'Anonymous'}!                          |');
+  print('|   You awake in a cold mansion. You do not know where you are  |');
+  print('|                    or what you are doing here.                |');
+  if (playerName == null) {
+    print('|   You do not remember your own name.                         |');
+  } else {
+    print('|           At least you know that your name is $playerName.           |');
+  }
+  print('=================================================================');
+  stdin.readLineSync();
+}
+
+void main() {
+  Navigation navB = Navigation();
+  play();
+  navB.doLook();
+  navB.lopping();
+}
+
+class Navigation extends Level {
+  void lopping() {
+    do {
+      doLook();
+    } while (activeroom != level.Torture); // Access Torture through the level instance
+    print('Game over');
+    exitCode;
+  }
+
+  void doLook() {
+    print('=================================================================');
+    print('|                 You are now in the ${activeroom.name}              |');
+    print(' ${activeroom.roomDescription}                                 ');
+
+    print('|I can go these directions: ${activeroom.getAvailableDirNames()} or look around |');
+    print('=================================================================');
+    String? path = stdin.readLineSync();
+
+    if (path == 'look around') {
+      print('You see: ${activeroom.getAvailableItems()}');
+      return doLook();
+    }
+    activeroom = activeroom.getExit(path!);
+  }
+}
+
+hallway 1 = á fyrstu hæð
+entrence
+office = bar
+Dining room = living room
+plant room = laundry
+1_1hallway
+ktichen
+
+
+
+2.1 hallway
+2.2 hallway
+Smalldiningroom = bedroom
+large batroom = closet
+small batroom = master
+bedroom = office
+backdoor = bathroom
