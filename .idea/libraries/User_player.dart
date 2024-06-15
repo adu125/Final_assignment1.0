@@ -7,7 +7,7 @@ class Player {
 
   Player({this.name = ''});
 
-  // Method to pick up an item from a room and add it to the player's inventory
+
   void pickupItem(Room room, String itemName) {
     Item? item = room.getItem(itemName);
     if (item != null) {
@@ -19,19 +19,19 @@ class Player {
     }
   }
 
-  // Method to store an item in the player's inventory
+
   void storeItemsInInventory(Item item) {
     inventory.add(item);
     print('${item.name} has been added to your inventory.');
   }
 
-  // Method to get the description of an item in the player's inventory
+
   void itemDescription(String itemName) {
     Item item = getInventoryItem(itemName);
     print(item.description);
   }
 
-  // Method to list all items in the player's inventory
+
   void itemsInInventory() {
     if (inventory.isNotEmpty) {
       print('Items in your inventory:');
@@ -43,7 +43,6 @@ class Player {
     }
   }
 
-  // Method to get an item from the player's inventory by name
   Item getInventoryItem(String itemName) {
     var item = inventory.firstWhere(
           (item) => item.name == itemName,

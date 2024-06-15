@@ -28,7 +28,7 @@ void play() {
 void main() {
   Navigation navB = Navigation();
   play();
-  navB.activeroom = navB.level.entrance; // Initialize activeroom to the entrance room
+  navB.activeroom = navB.level.entrance;
   navB.doLook();
   navB.looping();
 }
@@ -72,9 +72,7 @@ class Navigation extends Level {
           print('You found a hidden room! Would you like to enter? (yes/no)');
           String? response = stdin.readLineSync();
           if (response == 'yes') {
-            // Add the basement as an available exit from the bedroom
             level.Bedroom.setExit('down', level.Basement);
-            // Set the active room to be the basement
             activeroom = level.Basement;
             return doLook();
           } else if (response == 'no') {
@@ -87,9 +85,9 @@ class Navigation extends Level {
         return doLook();
       }
 
-      // Check if the path is forward
+
       if (path == 'forward') {
-        // Check if the active room is the basement and the player has the flashlight
+
         if (activeroom == level.Basement && !currentplayer.inventory.contains(level.flashlight)) {
           print('A ghost appears! It has now made you one of them. You might want to explore more. There is way to defeat the ghost');
           print('Game over');
